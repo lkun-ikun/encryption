@@ -1,7 +1,0 @@
-jdk:
-  - openjdk17
-build:
-  projects:
-    - encryption
-install:
-  - ./gradlew :encryption:clean :encryption:assembleRelease :encryption:publishToMavenLocal
