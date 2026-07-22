@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish' // 必须加，新版官方发布插件
+}
+
+android {
+    namespace "com.xhl.encryption"
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 23
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // 发布aar建议关闭混淆，否则外部项目难用
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    // AGP 8.x 必须显式声明需要发布的 variant，才会创建对应的 SoftwareComponent
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+// 发布配置，JitPack依赖此生成aar
+afterEvaluate {
+    // 调试：打印所有可用组件
+    println("【调试】可用组件列表: " + components.collect { it.name })
+    
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // 针对AGP 8.1.2：library模块应使用release组件
+                from components["release"]
+                // groupId仅本地标识，最终依赖groupId由GitHub账号决定
+                groupId = "com.xhl.component"
+                artifactId = "encryption" // library模块名
+                version = "1.0.0"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.github.10487511:encryption:Tag'
+}
