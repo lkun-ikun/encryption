@@ -16,5 +16,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Encryption"
-include ':app'
 include ':encryption'
