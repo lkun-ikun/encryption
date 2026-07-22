@@ -1,7 +1,0 @@
-jdk:
-  - openjdk17
-build:
-  projects:
-    - encryption  # 你的library模块名
-install:
-  - ./gradlew :encryption:clean :encryption:assembleRelease :encryption:publishToMavenLocal
