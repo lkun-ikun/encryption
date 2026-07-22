@@ -33,18 +33,13 @@ android {
 
 // 发布配置，JitPack依赖此生成aar
 afterEvaluate {
-    // 调试：打印所有可用组件
-    println("【调试】可用组件列表: " + components.collect { it.name })
-    
     publishing {
         publications {
             release(MavenPublication) {
-                // 针对AGP 8.1.2：library模块应使用release组件
-                from components["release"]
-                // groupId仅本地标识，最终依赖groupId由GitHub账号决定
-                groupId = "com.xhl.component"
-                artifactId = "encryption" // library模块名
-                version = "1.0.0"
+                from components.release
+                groupId = project.hasProperty("group") ? project.property("group") : "com.xhl.component"
+                artifactId = "encryption"
+                version = project.hasProperty("version") ? project.property("version") : "1.0.0"
             }
         }
     }
