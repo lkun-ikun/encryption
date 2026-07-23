@@ -32,14 +32,26 @@ android {
 }
 
 // 发布配置，JitPack依赖此生成aar
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//                from components.release
+//                groupId = project.hasProperty("group") ? project.property("group") : "com.xhl.component"
+//                artifactId = "encryption"
+//                version = project.hasProperty("version") ? project.property("version") : "1.0.0"
+//            }
+//        }
+//    }
+//}
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = project.hasProperty("group") ? project.property("group") : "com.xhl.component"
+                groupId = "com.github.lkun-ikun"
                 artifactId = "encryption"
-                version = project.hasProperty("version") ? project.property("version") : "1.0.0"
+                version = project.hasProperty('version') ? project.property('version') : '0.0.2'
             }
         }
     }
