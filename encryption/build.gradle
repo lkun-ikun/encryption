@@ -31,6 +31,21 @@ android {
     }
 }
 
+task sourceJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from android.sourceSets.main.java.srcDirs
+}
+
+task plainJar(type: Jar) {
+    archiveClassifier.set("plain")
+    from layout.buildDirectory.dir("intermediates/compile_release_java_classes")
+}
+
+artifacts {
+    archives plainJar
+    archives sourceJar
+}
+
 // 发布配置，JitPack依赖此生成aar
 //afterEvaluate {
 //    publishing {
@@ -51,7 +66,7 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.lkun-ikun"
                 artifactId = "encryption"
-                version = project.hasProperty('version') ? project.property('version') : '0.0.3'
+                version = project.hasProperty('version') ? project.property('version') : '0.0.4'
             }
         }
     }
