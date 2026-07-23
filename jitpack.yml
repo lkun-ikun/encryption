@@ -1,4 +1,0 @@
-jdk:
-    - openjdk17
-install:
-    - ./gradlew :encryption:clean :encryption:publishReleasePublicationToMavenLocal

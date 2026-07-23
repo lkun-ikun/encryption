@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish' // 必须加，新版官方发布插件
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.java
+                groupId = "com.github.lkun-ikun"
+                artifactId = "encryption"
+                version = project.hasProperty('version') ? project.property('version') : '0.0.5'
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-package com.xhl.encryption;
+package com.xhl.encryptionlib;
 import java.io.UnsupportedEncodingException;
 
 /**

@@ -1,4 +1,4 @@
-package com.xhl.encryption;
+package com.xhl.encryptionlib;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -33,7 +34,7 @@ public class Encryption {
 
     public static Encryption getDefault(String key, String salt, byte[] iv) {
         try {
-            return Encryption.Builder.getDefaultBuilder(key, salt, iv).build();
+            return Builder.getDefaultBuilder(key, salt, iv).build();
         } catch (NoSuchAlgorithmException var4) {
             var4.printStackTrace();
             return null;
