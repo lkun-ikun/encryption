@@ -51,12 +51,12 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.lkun-ikun"
                 artifactId = "encryption"
-                version = project.hasProperty('version') ? project.property('version') : '0.0.2'
+                version = project.hasProperty('version') ? project.property('version') : '0.0.3'
             }
         }
     }
 }
 
 dependencies {
-    implementation 'com.github.lkun-ikun:encryption:Tag'
+
 }
